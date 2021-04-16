@@ -5,9 +5,12 @@
  */
 package edu.eventos.ifms.controller;
 
+import edu.eventos.ifms.model.campusModel;
+import edu.eventos.ifms.repository.campusRepository;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 /**
@@ -15,38 +18,36 @@ import javax.faces.model.SelectItem;
  * @author mathe
  */
 @ManagedBean
+@ViewScoped
 public class campusController {
-    private String campusNome;
-    private int campusCidadeId;
-    private int campusEstadoId;
+    protected campusModel campusModel;
+    protected campusRepository campusRepository;
 
     public campusController(){
-        this.campusNome = "";
-        this.campusCidadeId = 0;
-        this.campusEstadoId = 0;
+        this.campusModel = new campusModel();
+        this.campusRepository = new campusRepository();
     }
 
     public void salvar(){
-        System.out.println("Campus nome: "+this.campusNome+" - Estado e Cidade Id´s: " + this.campusCidadeId +" - " + this.campusEstadoId);
+        this.campusRepository.salvar(this.campusModel);
     }
-    public String getCampusNome() {
-        return campusNome;
+    
+     public campusModel getCampusModel() {
+        return campusModel;
     }
-    public void setCampusNome(String campusNome) {
-        this.campusNome = campusNome;
+
+    public void setCampusModel(campusModel campusModel) {
+        this.campusModel = campusModel;
     }
-    public int getCampusCidadeId() {
-        return campusCidadeId;
+
+    public campusRepository getCampusRepository() {
+        return campusRepository;
     }
-    public void setCampusCidadeId(int campusCidadeId) {
-        this.campusCidadeId = campusCidadeId;
+
+    public void setCampusRepository(campusRepository campusRepository) {
+        this.campusRepository = campusRepository;
     }
-    public int getCampusEstadoId() {
-        return campusEstadoId;
-    }
-    public void setCampusEstadoId(int campusEstadoId) {
-        this.campusEstadoId = campusEstadoId;
-    }
+    
     public List<SelectItem> getEstados() {
         ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
         itens.add(new SelectItem(1, "São Paulo"));
