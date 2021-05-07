@@ -20,8 +20,8 @@ import javax.faces.model.SelectItem;
 @ManagedBean
 @ViewScoped
 public class campusController {
-    protected campusModel campusModel;
-    protected campusRepository campusRepository;
+    private campusModel campusModel;
+    private campusRepository campusRepository;
 
     public campusController(){
         this.campusModel = new campusModel();

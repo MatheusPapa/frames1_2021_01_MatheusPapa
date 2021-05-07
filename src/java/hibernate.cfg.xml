@@ -48,5 +48,6 @@ Contributor(s):
     <property name="hibernate.connection.password">nbuser</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="edu.eventos.ifms.model.campusModel"/>
+    <mapping class="edu.eventos.ifms.model.areaModel"/>
   </session-factory>
 </hibernate-configuration>

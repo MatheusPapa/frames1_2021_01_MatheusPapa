@@ -8,7 +8,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Cadastrar Campus</title>
+        <title>Cadastrar Área</title>
         <h:outputStylesheet name="bootstrap-4.1/css/bootstrap.min.css"/>
         <h:outputScript name="jquery/jquery-3.3.1.slim.min.js"/>
         <h:outputScript name="jquery/jquery.min.js"/>
@@ -36,13 +36,13 @@ and open the template in the editor.
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" ariahaspopup="true" aria-expanded="false">Área</a>
                     <div class="dropdown-menu">
-                        <h:link class="dropdownitem" value="Cadastrar Campus" outcome="/view/area/inserirArea.xhtml" />
+                        <h:link class="dropdownitem" value="Cadastrar Área" outcome="/view/area/inserirArea.xhtml" />
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" ariahaspopup="true" aria-expanded="false">Evento</a>
                     <div class="dropdown-menu">
-                        <h:link class="dropdownitem" value="Cadastrar Campus" outcome="/view/campus/inserirCampus.xhtml" />
+                        <h:link class="dropdownitem" value="Cadastrar Evento" outcome="/view/campus/inserirCampus.xhtml" />
                     </div>
                 </li>
                 <li class="nav-item">
@@ -57,29 +57,16 @@ and open the template in the editor.
             </ul>
         </div>
         <div class="container">
-            <h1>Cadastrar Campus</h1>
+            <h1>Cadastrar Área</h1>
             <h:form class="novo" acceptcharset="ISO-8859-1">
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="campusNome">Nome do Campus</label>
-                        <h:inputText class="form-control" id="nomeCampus" value="#{campusController.campusModel.campusNome}"/>
+                        <label for="campusNome">Nome da Área</label>
+                        <h:inputText class="form-control" id="nomeArea" value="#{areaController.areaModel.areaNome}"/>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="campusEstadoId">Estado</label>
-                        <h:selectOneMenu class="form-control" id="idEstadoCampus" value="#{campusController.campusModel.campusEstadoId}">
-                            <f:selectItems value="#{campusController.estados}" />
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="campusCidadeId">Cidade</label>
-                        <h:selectOneMenu class="form-control" id="idCidadeCampus" value="#{campusController.campusModel.campusCidadeId}">
-                            <f:selectItems value="#{campusController.cidades}" />
-                        </h:selectOneMenu>
-                    </div>
-                </div>
-                <h:commandButton class="btn btn-primary" value="Salvar" action="#{campusController.salvar()}"/>
+                
+                <h:commandButton class="btn btn-primary" value="Salvar" action="#{areaController.salvar()}"/>
             </h:form>
         </div>
     </h:body>
