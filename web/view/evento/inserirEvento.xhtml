@@ -6,9 +6,10 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Cadastrar Área</title>
+        <title>Cadastrar Evento</title>
         <h:outputStylesheet name="bootstrap-4.1/css/bootstrap.min.css"/>
         <h:outputScript name="jquery/jquery-3.3.1.slim.min.js"/>
         <h:outputScript name="jquery/jquery.min.js"/>
@@ -36,7 +37,7 @@ and open the template in the editor.
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" ariahaspopup="true" aria-expanded="false">Área</a>
                     <div class="dropdown-menu">
-                        <h:link style="padding: 10px" class="dropdownitem" value="Cadastrar Área" outcome="/view/area/inserirArea.xhtml" />
+                        <h:link style="padding: 10px" class="dropdownitem" value="Cadastrar Campus" outcome="/view/area/inserirArea.xhtml" />
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -59,22 +60,39 @@ and open the template in the editor.
         <div class="container">
             <div class="card">
                 <h:form class="novo" acceptcharset="ISO-8859-1">
-                    <div class="card-header" style="text-align: center;">
-                      <h2>Cadastrar Área</h2>
+                    <div class="card-header" style="text-align: center">
+                        <h2>Cadastrar Evento</h2>
                     </div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="campusNome">Nome da Área</label>
-                                <h:inputText required="true" class="form-control" id="nomeArea" value="#{areaController.areaModel.areaNome}"/>
+                                <label for="eventoNome">Nome do Evento</label>
+                                <h:inputText required="true" class="form-control" id="nomeEvento" value="#{eventoController.eventoModel.eventoNome}"/>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="eventoDataInicio">Data de início</label>
+                                <h:inputText required="true" class="form-control" id="dataInicio" value="#{eventoController.eventoModel.dataInicio}"/>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="eventoDataFim">Data fim</label>
+                                <h:inputText required="true" class="form-control" id="dataFim" value="#{eventoController.eventoModel.dataFim}"/>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="eventoIdCampus">Campus</label>
+                                <h:selectOneMenu required="true" class="form-control" id="idCampus" value="#{eventoController.eventoModel.campus.idCampus}">  
+                                    <f:selectItem noSelectionOption="true" itemLabel="Selecione um campus" itemValue="" />
+                                    <f:selectItems value="#{eventoController.campi}" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>                   
                     </div>
                     <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: flex-end;">
-                      <h:commandButton class="btn btn-primary" value="Salvar" action="#{areaController.salvar()}"/>
+                        <h:commandButton class="btn btn-primary" value="Salvar" action="#{eventoController.salvar()}"/>
                     </div>
                 </h:form>
-            </div>   
+            </div>            
         </div>
     </h:body>
 </html>

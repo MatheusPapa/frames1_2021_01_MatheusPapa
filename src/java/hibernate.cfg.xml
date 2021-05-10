@@ -49,5 +49,6 @@ Contributor(s):
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="edu.eventos.ifms.model.campusModel"/>
     <mapping class="edu.eventos.ifms.model.areaModel"/>
+    <mapping class="edu.eventos.ifms.model.eventoModel"/>
   </session-factory>
 </hibernate-configuration>
