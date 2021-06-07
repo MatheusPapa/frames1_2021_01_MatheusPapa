@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewParam value="#{cursoController.cursoModel.idCurso}" name="idCurso"/>
+        <f:viewAction action="#{cursoController.getCurso()}" />
+    </f:metadata>
+    <ui:define name="corpo">
+        <div class="container">
+            <div class="card">
+                <h:form class="novo" acceptcharset="ISO-8859-1">
+                    <div class="card-header" style="text-align: center;">
+                      <h2>Editar Curso</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="campusNome">Nome do Curso</label>
+                                <h:inputText required="true" class="form-control" id="nomeCurso" value="#{cursoController.cursoModel.cursoNome}"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="campusNome">Descrição do Curso</label>
+                                <h:inputTextarea required="true" class="form-control" id="descricao" value="#{cursoController.cursoModel.descricao}"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="campusEstadoId">Área do Curso</label>
+                                <h:selectOneMenu required="true" class="form-control" id="idEstadoCampus" value="#{cursoController.cursoModel.area.idArea}">
+                                    <f:selectItems value="#{cursoController.areas}" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="campusCidadeId">Campus</label>
+                                <h:selectOneMenu required="true" class="form-control" id="idCidadeCampus" value="#{cursoController.cursoModel.campus.idCampus}">
+                                    <f:selectItems value="#{cursoController.campi}" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: space-between;">
+                        <h:commandButton class="btn btn-secondary" value="Voltar" action="buscarCurso.xhtml"/>
+                        <h:commandButton class="btn btn-primary" value="Salvar alterações" action="#{cursoController.salvarEdicao()}"/>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

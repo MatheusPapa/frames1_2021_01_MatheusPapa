@@ -5,7 +5,7 @@
  */
 package edu.eventos.ifms.repository;
 
-import edu.eventos.ifms.model.areaModel;
+import edu.eventos.ifms.model.cursoModel;
 import edu.eventos.ifms.util.hibernateConector;
 import java.util.List;
 import org.hibernate.Session;
@@ -15,49 +15,49 @@ import org.hibernate.Transaction;
  *
  * @author mathe
  */
-public class areaRepository {
+public class cursoRepository {
     private Session session;
     private Transaction transaction;
     
-    public void salvar(areaModel area){
+    public void salvar(cursoModel curso){
         this.session = hibernateConector.getSessionFactory().openSession();
         this.transaction = session.beginTransaction();
 
-        this.session.saveOrUpdate(area);
+        this.session.saveOrUpdate(curso);
 
         this.transaction.commit();
         this.session.close();
 
     }
     
-    public List<areaModel> buscarTodos(){
+    public List<cursoModel> buscarTodos(){
         this.session = hibernateConector.getSessionFactory().openSession();
         this.transaction = session.beginTransaction();
         
-        List<areaModel> listaDeAreas = this.session.createQuery("from areaModel").list();
+        List<cursoModel> listaDeCursos = this.session.createQuery("from cursoModel").list();
         this.transaction.commit();
         this.session.close();
-        return listaDeAreas;
+        return listaDeCursos;
     }
     
-    public areaModel buscarPorId(long idArea){
+    public cursoModel buscarPorId(long idCurso){
         this.session = hibernateConector.getSessionFactory().openSession();
         this.transaction = session.beginTransaction();
         
-        areaModel area = (areaModel) this.session.get(areaModel.class, idArea);
+        cursoModel curso = (cursoModel) this.session.get(cursoModel.class, idCurso);
         
         this.transaction.commit();
         this.session.close();
-        return area;
+        return curso;
     }
     
     
-    public void remover(long idArea) {
+    public void remover(long idCurso) {
         this.session = hibernateConector.getSessionFactory().openSession();
         this.transaction = session.beginTransaction();
 
-        areaModel area = (areaModel) this.session.get(areaModel.class, idArea);
-        this.session.delete(area);
+        cursoModel curso = (cursoModel) this.session.get(cursoModel.class, idCurso);
+        this.session.delete(curso);
 
         this.transaction.commit();
         this.session.close();

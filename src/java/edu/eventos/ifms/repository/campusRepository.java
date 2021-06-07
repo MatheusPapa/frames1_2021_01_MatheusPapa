@@ -14,7 +14,7 @@ public class campusRepository {
         this.session = hibernateConector.getSessionFactory().openSession();
         this.transaction = session.beginTransaction();
 
-        this.session.save(campus);
+        this.session.saveOrUpdate(campus);
 
         this.transaction.commit();
         this.session.close();
@@ -42,4 +42,15 @@ public class campusRepository {
         return campus;
     }
     
+    public void remover(long idCampus) {
+        this.session = hibernateConector.getSessionFactory().openSession();
+        this.transaction = session.beginTransaction();
+
+        campusModel campus = (campusModel) this.session.get(campusModel.class, idCampus);
+        this.session.delete(campus);
+
+        this.transaction.commit();
+        this.session.close();
+    }
+
 }

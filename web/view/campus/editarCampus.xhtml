@@ -4,12 +4,17 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewParam value="#{campusController.campusModel.idCampus}" name="idCampus"/>
+        <f:viewAction action="#{campusController.getCampus()}" />
+    </f:metadata>
     <ui:define name="corpo">
         <div class="container">
             <div class="card">
                 <h:form class="novo" acceptcharset="ISO-8859-1">
+                    <h:inputHidden id="idCampus" value="#{campusController.campusModel.idCampus}"/>
                     <div class="card-header" style="text-align: center;">
-                      <h2>Cadastrar Campus</h2>
+                      <h2>Editar Campus</h2>
                     </div>
                     <div class="card-body">
                         <div class="form-row">
@@ -34,8 +39,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: flex-end;">
-                      <h:commandButton class="btn btn-primary" value="Salvar" action="#{campusController.salvar()}"/>
+                    <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: space-between;">
+                        <h:commandButton class="btn btn-secondary" value="Voltar" action="buscarCampus.xhtml"/>
+                        <h:commandButton class="btn btn-primary" value="Salvar alterações" action="#{campusController.salvarEdicao()}"/>
                     </div>
                 </h:form>
             </div>

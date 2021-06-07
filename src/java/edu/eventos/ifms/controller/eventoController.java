@@ -27,6 +27,7 @@ public class eventoController {
     private campusModel campusModel;
     private campusRepository campusRepository;
     private List<campusModel> listaDeCampus;
+    private List<eventoModel> listaDeEventos;
 
     public eventoController() {
         this.eventoModel = new eventoModel();
@@ -36,16 +37,38 @@ public class eventoController {
         this.listaDeCampus = new ArrayList<>();
     }
     
-    public void salvar(){
+    public String salvar(){
         this.eventoRepository.salvar(this.eventoModel);
+        return "buscarEvento.xhtml?faces-redirect=true";
+    }
+    
+    public String salvarEdicao() {
+        this.eventoRepository.salvar(this.eventoModel);
+        return "buscarEvento.xhtml?faces-redirect=true";
+    }
+
+    public String editar(long idEvento) {
+        return "editarEvento.xhtml?faces-redirect=true&idEvento=" + idEvento;
+    }
+    
+    public void remover(long idEvento) {
+        this.eventoRepository.remover(idEvento);
+    }
+    
+    public void buscarTodosEventos() {
+        this.listaDeEventos = this.eventoRepository.buscarTodos();
+    }
+    
+    public void getEvento() {
+        this.eventoModel = this.eventoRepository.buscarPorId(this.eventoModel.getIdEvento());
     }
     
     public List<SelectItem> getCampi() {
         ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
         this.listaDeCampus = this.campusRepository.buscarTodos();
-        for (campusModel campus : listaDeCampus) {
+        listaDeCampus.forEach((campus) -> {
             itens.add(new SelectItem(campus.getIdCampus(), campus.getCampusNome()));
-        }
+        });
         return itens;
     }
 
@@ -87,6 +110,14 @@ public class eventoController {
 
     public void setListaDeCampus(List<campusModel> listaDeCampus) {
         this.listaDeCampus = listaDeCampus;
+    }
+
+    public List<eventoModel> getListaDeEventos() {
+        return listaDeEventos;
+    }
+
+    public void setListaDeEventos(List<eventoModel> listaDeEventos) {
+        this.listaDeEventos = listaDeEventos;
     }
     
 }

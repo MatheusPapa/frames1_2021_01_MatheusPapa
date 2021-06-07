@@ -37,5 +37,13 @@ public class areaModel implements Serializable {
     public void setAreaNome(String areaNome) {
         this.areaNome = areaNome;
     }
+
+    public Long getIdArea() {
+        return idArea;
+    }
+
+    public void setIdArea(Long idArea) {
+        this.idArea = idArea;
+    }
     
 }

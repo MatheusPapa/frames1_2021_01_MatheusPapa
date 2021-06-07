@@ -4,12 +4,16 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewParam value="#{areaController.areaModel.idArea}" name="idArea"/>
+        <f:viewAction action="#{areaController.getArea()}" />
+    </f:metadata>
     <ui:define name="corpo">
         <div class="container">
             <div class="card">
                 <h:form class="novo" acceptcharset="ISO-8859-1">
                     <div class="card-header" style="text-align: center;">
-                      <h2>Cadastrar Área</h2>
+                      <h2>Editar Área</h2>
                     </div>
                     <div class="card-body">
                         <div class="form-row">
@@ -19,8 +23,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: flex-end;">
-                      <h:commandButton class="btn btn-primary" value="Salvar" action="#{areaController.salvar()}"/>
+                    <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: space-between;">
+                        <h:commandButton class="btn btn-secondary" value="Voltar" action="buscarArea.xhtml"/>
+                        <h:commandButton class="btn btn-primary" value="Salvar alterações" action="#{areaController.salvarEdicao()}"/>
                     </div>
                 </h:form>
             </div>   

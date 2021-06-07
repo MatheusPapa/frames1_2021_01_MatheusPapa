@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="corpo">
+        <div class="container">
+            <h1>Buscar Curso</h1>
+            <hr/>
+            <div class="field">
+                <table data-page-length='5' class="table table-bordered table-striped table-hover" style="text-align: center" onload="#{cursoController.buscarTodosCursos()}">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome do curso</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Área</th>
+                            <th scope="col">Campus</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{cursoController.listaDeCursos}" var="curso">
+                            <tr>
+                                <td>#{curso.idCurso}</td>
+                                <td>#{curso.cursoNome}</td>
+                                <td>#{curso.descricao}</td>
+                                <td>#{curso.area.areaNome}</td>
+                                <td>#{curso.campus.campusNome}</td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar esse curso?')" action= "#{cursoController.editar(curso.idCurso)}"/>
+                                    </h:form>
+                                </td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="confirm('Tem certeza que deseja excluir esse curso?')" action= "#{cursoController.remover(curso.idCurso)}"/>
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
