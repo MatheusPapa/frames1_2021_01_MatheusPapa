@@ -10,54 +10,54 @@
             <div class="card">
                 <h:form class="novo" acceptcharset="ISO-8859-1">
                     <div class="card-header" style="text-align: center">
-                        <h2>Cadastrar Aluno</h2>
+                        <h2>Cadastrar Servidor</h2>
                     </div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="eventoNome">Nome do Aluno</label>
-                                <h:inputText required="true" class="form-control" id="nomeAluno" value="#{alunoController.alunoModel.pessoaNome}"/>
+                                <label for="eventoNome">Nome do Servidor</label>
+                                <h:inputText required="true" class="form-control" id="nomeAluno" value="#{servidorController.servidorModel.pessoaNome}"/>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="eventoNome">RA</label>
-                                <h:inputText required="true" class="form-control" id="ra" value="#{alunoController.alunoModel.ra}"/>
+                                <label for="eventoNome">SIAPE</label>
+                                <h:inputText required="true" class="form-control" id="siape" value="#{servidorController.servidorModel.siape}"/>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="eventoNome">CPF</label>
-                                <h:inputText required="true" class="form-control" id="cpf" value="#{alunoController.alunoModel.cpf}"/>
+                                <h:inputText required="true" class="form-control" id="cpf" value="#{servidorController.servidorModel.cpf}"/>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="eventoNome">Telefone</label>
-                                <h:inputText required="true" class="form-control" id="telefone" value="#{alunoController.alunoModel.telefone}"/>
+                                <h:inputText required="true" class="form-control" id="telefone" value="#{servidorController.servidorModel.telefone}"/>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="eventoDataInicio">Data de ingresso</label>
-                                <h:inputText t:type="date" class="form-control" id="dataInicio" value="#{alunoController.alunoModel.dataIngresso}">
+                                <h:inputText t:type="date" class="form-control" id="dataInicio" value="#{servidorController.servidorModel.dataIngresso}">
                                     <f:convertDateTime dateStyle="short" pattern="yyyy-MM-dd" timeZone="GMT-4"/>
                                 </h:inputText>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="eventoIdCampus">Campus</label>
-                                <h:selectOneMenu required="true" class="form-control" id="idCampus" value="#{alunoController.alunoModel.campus.idCampus}">  
+                                <h:selectOneMenu required="true" class="form-control" id="idCampus" value="#{servidorController.servidorModel.campus.idCampus}">  
                                     <f:selectItem noSelectionOption="true" itemLabel="Selecione um campus" itemValue="" />
-                                    <f:selectItems value="#{alunoController.campi}" />
+                                    <f:selectItems value="#{servidorController.campi}" />
                                 </h:selectOneMenu>
                             </div>
                              <div class="form-group col-md-4">
-                                <label for="eventoIdCampus">Curso</label>
-                                <h:selectOneMenu required="true" class="form-control" id="idCurso" value="#{alunoController.alunoModel.curso.idCurso}">  
-                                    <f:selectItem noSelectionOption="true" itemLabel="Selecione um curso" itemValue="" />
-                                    <f:selectItems value="#{alunoController.cursos}" />
+                                <label for="eventoIdCampus">Área</label>
+                                <h:selectOneMenu required="true" class="form-control" id="idArea" value="#{servidorController.servidorModel.area.idArea}">  
+                                    <f:selectItem noSelectionOption="true" itemLabel="Selecione uma área" itemValue="" />
+                                    <f:selectItems value="#{servidorController.areas}" />
                                 </h:selectOneMenu>
                             </div>
                         </div>                   
                     </div>
                     <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: flex-end;">
-                        <h:commandButton class="btn btn-primary" value="Salvar" action="#{alunoController.salvar()}"/>
+                        <h:commandButton class="btn btn-primary" value="Salvar" action="#{servidorController.salvar()}"/>
                     </div>
                 </h:form>
             </div>            

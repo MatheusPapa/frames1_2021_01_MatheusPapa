@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,27 +27,11 @@ import org.hibernate.annotations.FetchMode;
  */
 @Entity
 @Table (name = "aluno")
-public class alunoModel implements Serializable {
-    
-    @Id
-    @GeneratedValue
-    private Long idAluno;
-    
-    @Column(nullable = false, length = 80)
-    private String alunoNome;
+@PrimaryKeyJoinColumn(name = "idPessoa")
+public class alunoModel extends pessoaInternaModel implements Serializable {
     
     @Column(nullable = false, length = 10)
     private String ra;
-    
-    @Column(nullable = false, length = 11)
-    private String cpf;
-    
-    @Column(nullable = false, length = 11)
-    private String telefone;
-    
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dataIngresso;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
@@ -63,44 +48,12 @@ public class alunoModel implements Serializable {
         this.curso = new cursoModel();
     }
 
-    public Long getIdAluno() {
-        return idAluno;
-    }
-
-    public void setIdAluno(Long idAluno) {
-        this.idAluno = idAluno;
-    }
-
-    public String getAlunoNome() {
-        return alunoNome;
-    }
-
-    public void setAlunoNome(String alunoNome) {
-        this.alunoNome = alunoNome;
-    }
-
     public String getRa() {
         return ra;
     }
 
     public void setRa(String ra) {
         this.ra = ra;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Date getDataIngresso() {
-        return dataIngresso;
-    }
-
-    public void setDataIngresso(Date dataIngresso) {
-        this.dataIngresso = dataIngresso;
     }
 
     public campusModel getCampus() {
@@ -118,13 +71,5 @@ public class alunoModel implements Serializable {
     public void setCurso(cursoModel curso) {
         this.curso = curso;
     }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    } 
     
 }

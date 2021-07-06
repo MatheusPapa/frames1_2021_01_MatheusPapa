@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="corpo">
+        <div class="container">
+            <h1>Buscar Pessoa Externa</h1>
+            <hr/>
+            <div class="field">
+                <table data-page-length='5' class="table table-bordered table-striped table-hover" style="text-align: center" onload="#{externoController.buscarTodosExternos()}">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">Instituição</th>
+                            <th scope="col">Cidade</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{externoController.listaDeExternos}" var="externo">
+                            <tr>
+                                <td>#{externo.idPessoa}</td>
+                                <td>#{externo.pessoaNome}</td>
+                                <td>#{externo.cpf}</td>
+                                <td>#{externo.instituicao}</td>
+                                <td>#{externo.cidade.cidadeNome}</td>
+                                <td>#{externo.estado.estadoNome}</td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar essa pessoa?')" action= "#{externoController.editar(externo.idPessoa)}" />
+                                    </h:form>
+                                </td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="confirm('Tem certeza que deseja excluir essa pessoa?')" action= "#{externoController.remover(externo.idPessoa)}"/>
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

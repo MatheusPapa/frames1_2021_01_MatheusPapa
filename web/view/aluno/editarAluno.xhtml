@@ -6,7 +6,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:t="http://xmlns.jcp.org/jsf/passthrough">
     <f:metadata>
-        <f:viewParam value="#{alunoController.alunoModel.idAluno}" name="idAluno"/>
+        <f:viewParam value="#{alunoController.alunoModel.idPessoa}" name="idAluno"/>
         <f:viewAction action="#{alunoController.getAluno()}" />
     </f:metadata>
     <ui:define name="corpo">
@@ -14,13 +14,13 @@
             <div class="card">
                 <h:form class="novo" acceptcharset="ISO-8859-1">
                     <div class="card-header" style="text-align: center">
-                        <h2>Cadastrar Aluno</h2>
+                        <h2>Editar Aluno</h2>
                     </div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="eventoNome">Nome do Aluno</label>
-                                <h:inputText required="true" class="form-control" id="nomeAluno" value="#{alunoController.alunoModel.alunoNome}"/>
+                                <h:inputText required="true" class="form-control" id="nomeAluno" value="#{alunoController.alunoModel.idPessoa}"/>
                             </div>
                         </div>
                         <div class="form-row">

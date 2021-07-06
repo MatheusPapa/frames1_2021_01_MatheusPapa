@@ -68,7 +68,7 @@ public class alunoController {
     }
     
     public void getAluno() {
-        this.alunoModel = this.alunoRepository.buscarPorId(this.alunoModel.getIdAluno());
+        this.alunoModel = this.alunoRepository.buscarPorId(this.alunoModel.getIdPessoa());
     }
     
     public List<SelectItem> getCampi() {

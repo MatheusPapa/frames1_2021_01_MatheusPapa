@@ -6,37 +6,37 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="corpo">
         <div class="container">
-            <h1>Buscar Aluno</h1>
+            <h1>Buscar Servidor</h1>
             <hr/>
             <div class="field">
-                <table data-page-length='5' class="table table-bordered table-striped table-hover" style="text-align: center" onload="#{alunoController.buscarTodosAlunos()}">
+                <table data-page-length='5' class="table table-bordered table-striped table-hover" style="text-align: center" onload="#{servidorController.buscarTodosServidores()}">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nome do aluno</th>
-                            <th scope="col">RA</th>
-                            <th scope="col">Curso</th>
+                            <th scope="col">Nome do servidor</th>
+                            <th scope="col">SIAPE</th>
                             <th scope="col">Campus</th>
+                            <th scope="col">Área</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <ui:repeat value="#{alunoController.listaDeAlunos}" var="aluno">
+                        <ui:repeat value="#{servidorController.listaDeServidores}" var="servidor">
                             <tr>
-                                <td>#{aluno.idPessoa}</td>
-                                <td>#{aluno.pessoaNome}</td>
-                                <td>#{aluno.ra}</td>
-                                <td>#{aluno.curso.cursoNome}</td>
-                                <td>#{aluno.campus.campusNome}</td>
+                                <td>#{servidor.idPessoa}</td>
+                                <td>#{servidor.pessoaNome}</td>
+                                <td>#{servidor.siape}</td>
+                                <td>#{servidor.campus.campusNome}</td>
+                                <td>#{servidor.area.areaNome}</td>
                                 <td>
                                     <h:form>
-                                        <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar esse aluno?')" action= "#{alunoController.editar(aluno.idAluno)}" />
+                                        <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar esse servidor?')" action= "#{servidorController.editar(servidor.idPessoa)}" />
                                     </h:form>
                                 </td>
                                 <td>
                                     <h:form>
-                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="confirm('Tem certeza que deseja excluir esse aluno?')" action= "#{alunoController.remover(aluno.idAluno)}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="confirm('Tem certeza que deseja excluir esse servidor?')" action= "#{servidorController.remover(servidor.idPessoa)}"/>
                                     </h:form>
                                 </td>
                             </tr>
