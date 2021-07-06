@@ -26,8 +26,16 @@
                             <tr>
                                 <td>#{evento.idEvento}</td>
                                 <td>#{evento.eventoNome}</td>
-                                <td>#{evento.dataInicio}</td>
-                                <td>#{evento.dataFim}</td>
+                                <td>
+                                    <h:outputLabel value="#{evento.dataInicio}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputLabel>
+                                </td>
+                                <td>
+                                    <h:outputLabel value="#{evento.dataFim}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputLabel>
+                                </td>
                                 <td>#{evento.campus.campusNome}</td>
                                 <td>
                                     <h:form>

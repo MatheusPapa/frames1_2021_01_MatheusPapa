@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -34,8 +36,12 @@ public class eventoModel implements Serializable {
     private String eventoNome;
     
     @Column(nullable = false)
-    private String dataInicio;
-    private String dataFim;
+    @Temporal(TemporalType.DATE)
+    private Date dataInicio;
+    
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date dataFim;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
@@ -62,19 +68,18 @@ public class eventoModel implements Serializable {
         this.eventoNome = eventoNome;
     }
 
-    public String getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
-
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public String getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(String dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
 

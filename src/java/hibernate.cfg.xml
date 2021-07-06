@@ -53,5 +53,6 @@ Contributor(s):
     <mapping class="edu.eventos.ifms.model.estadoModel"/>
     <mapping class="edu.eventos.ifms.model.cidadeModel"/>
     <mapping class="edu.eventos.ifms.model.cursoModel"/>
+    <mapping class="edu.eventos.ifms.model.alunoModel"/>
   </session-factory>
 </hibernate-configuration>

@@ -3,7 +3,8 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:t="http://xmlns.jcp.org/jsf/passthrough">
     <f:metadata>
         <f:viewParam value="#{eventoController.eventoModel.idEvento}" name="idEvento"/>
         <f:viewAction action="#{eventoController.getEvento()}" />
@@ -25,11 +26,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="eventoDataInicio">Data de início</label>
-                                <h:inputText required="true" class="form-control" id="dataInicio" value="#{eventoController.eventoModel.dataInicio}"/>
+                                <h:inputText t:type="date" class="form-control" id="dataInicio" value="#{eventoController.eventoModel.dataInicio}">
+                                    <f:convertDateTime dateStyle="short" pattern="yyyy-MM-dd" timeZone="GMT-4"/>
+                                </h:inputText>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="eventoDataFim">Data fim</label>
-                                <h:inputText required="true" class="form-control" id="dataFim" value="#{eventoController.eventoModel.dataFim}"/>
+                                <h:inputText t:type="date" class="form-control" id="dataFim" value="#{eventoController.eventoModel.dataFim}">
+                                    <f:convertDateTime dateStyle="short" pattern="yyyy-MM-dd" timeZone="GMT-4"/>
+                                </h:inputText>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="eventoIdCampus">Campus</label>

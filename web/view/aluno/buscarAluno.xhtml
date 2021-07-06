@@ -6,31 +6,37 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="corpo">
         <div class="container">
-            <h1>Buscar Área</h1>
+            <h1>Buscar Aluno</h1>
             <hr/>
             <div class="field">
-                <table data-page-length='5' class="table table-bordered table-striped table-hover" style="text-align: center" onload="#{areaController.buscarTodasAreas()}">
+                <table data-page-length='5' class="table table-bordered table-striped table-hover" style="text-align: center" onload="#{alunoController.buscarTodosAlunos()}">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nome da área</th>
+                            <th scope="col">Nome do aluno</th>
+                            <th scope="col">RA</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Campus</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <ui:repeat value="#{areaController.listaDeAreas}" var="area">
+                        <ui:repeat value="#{alunoController.listaDeAlunos}" var="aluno">
                             <tr>
-                                <td>#{area.idArea}</td>
-                                <td>#{area.areaNome}</td>
+                                <td>#{aluno.idAluno}</td>
+                                <td>#{aluno.alunoNome}</td>
+                                <td>#{aluno.ra}</td>
+                                <td>#{aluno.curso.cursoNome}</td>
+                                <td>#{aluno.campus.campusNome}</td>
                                 <td>
                                     <h:form>
-                                        <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar essa área?')" action= "#{areaController.editar(area.idArea)}" />
+                                        <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar esse aluno?')" action= "#{alunoController.editar(aluno.idAluno)}" />
                                     </h:form>
                                 </td>
                                 <td>
                                     <h:form>
-                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="confirm('Tem certeza que deseja excluir essa área?')" action= "#{areaController.remover(area.idArea)}"/>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="confirm('Tem certeza que deseja excluir esse aluno?')" action= "#{alunoController.remover(aluno.idAluno)}"/>
                                     </h:form>
                                 </td>
                             </tr>
