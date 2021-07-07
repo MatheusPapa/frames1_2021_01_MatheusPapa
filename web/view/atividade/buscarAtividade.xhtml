@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="corpo">
+        <div class="container">
+            <h1>Buscar Atividade</h1>
+            <hr/>
+            <div class="field">
+                <table data-page-length='5' class="table table-bordered table-striped table-hover" style="text-align: center" onload="#{atividadeController.buscarTodasAtividades()}">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome da atividade</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Quantidade de vagas</th>
+                            <th scope="col">Evento</th>
+                            <th scope="col">Ministrante</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{atividadeController.listaDeAtividades}" var="atividade">
+                            <tr>
+                                <td>#{atividade.idAtividade}</td>
+                                <td>#{atividade.atividadeNome}</td>
+                                <td>#{atividade.descricao}</td>
+                                <td>#{atividade.quantidade}</td>
+                                <td>#{atividade.evento.eventoNome}</td>
+                                <td>#{atividade.ministrante.pessoaNome}</td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar essa atividade?')" action= "#{atividadeController.editar(atividade.idAtividade)}"/>
+                                    </h:form>
+                                </td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="confirm('Tem certeza que deseja excluir essa atividade?')" action= "#{atividadeController.remover(atividade.idAtividade)}"/>
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

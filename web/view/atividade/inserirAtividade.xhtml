@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:t="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:define name="corpo">
+        <div class="container">
+            <div class="card">
+                <h:form class="novo" acceptcharset="ISO-8859-1">
+                    <div class="card-header" style="text-align: center">
+                        <h2>Cadastrar Atividade</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="eventoNome">Nome da Atividade</label>
+                                <h:inputText required="true" class="form-control" id="nomeAtividade" value="#{atividadeController.atividadeModel.atividadeNome}"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="eventoNome">Descrição</label>
+                                <h:inputTextarea required="true" class="form-control" id="descricao" value="#{atividadeController.atividadeModel.descricao}"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="campusEstadoId">Quantidade de vagas</label>
+                                <h:inputText required="true" class="form-control" id="vagas" value="#{atividadeController.atividadeModel.quantidade}"/>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="campusCidadeId">Evento</label>
+                                <h:selectOneMenu required="true" class="form-control" id="idEvento" value="#{atividadeController.atividadeModel.evento.idEvento}">
+                                    <f:selectItems value="#{atividadeController.eventos}" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="campusCidadeId">Ministrante</label>
+                                <h:selectOneMenu required="true" class="form-control" id="idMinistrante" value="#{atividadeController.atividadeModel.ministrante.idPessoa}">
+                                    <f:selectItems value="#{atividadeController.ministrantes}" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>                   
+                    </div>
+                    <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: flex-end;">
+                        <h:commandButton class="btn btn-primary" value="Salvar" action="#{atividadeController.salvar()}"/>
+                    </div>
+                </h:form>
+            </div>            
+        </div>
+    </ui:define>
+</ui:composition>
