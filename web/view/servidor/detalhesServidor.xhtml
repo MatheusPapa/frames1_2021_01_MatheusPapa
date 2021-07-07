@@ -13,54 +13,49 @@
         <div class="container">
             <div class="card">
                 <h:form class="novo" acceptcharset="ISO-8859-1">
-                    <h:inputHidden id="idServidor" value="#{servidorController.servidorModel.idPessoa}"/>
                     <div class="card-header" style="text-align: center">
-                        <h2>Editar Servidor</h2>
+                        <h2>Dados do Servidor</h2>
                     </div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="eventoNome">Nome do Servidor</label>
-                                <h:inputText required="true" class="form-control" id="nomeAluno" value="#{servidorController.servidorModel.pessoaNome}"/>
+                                <h:outputText class="form-control" id="nomeAluno" value="#{servidorController.servidorModel.pessoaNome}"/>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="eventoNome">SIAPE</label>
-                                <h:inputText required="true" class="form-control" id="siape" value="#{servidorController.servidorModel.siape}"/>
+                                <h:outputText class="form-control" id="siape" value="#{servidorController.servidorModel.siape}"/>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="eventoNome">CPF</label>
-                                <h:inputText required="true" class="form-control" id="cpf" value="#{servidorController.servidorModel.cpf}"/>
+                                <h:outputText class="form-control" id="cpf" value="#{servidorController.servidorModel.cpf}"/>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="eventoNome">Telefone</label>
-                                <h:inputText required="true" class="form-control" id="telefone" value="#{servidorController.servidorModel.telefone}"/>
+                                <h:outputText class="form-control" id="telefone" value="#{servidorController.servidorModel.telefone}"/>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="eventoDataInicio">Data de ingresso</label>
-                                <h:inputText t:type="date" class="form-control" id="dataInicio" value="#{servidorController.servidorModel.dataIngresso}">
-                                    <f:convertDateTime dateStyle="short" pattern="yyyy-MM-dd" timeZone="GMT-4"/>
-                                </h:inputText>
+                                <h:outputText class="form-control" id="dataInicio" value="#{servidorController.servidorModel.dataIngresso}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="eventoNome">Cargo</label>
-                                <h:inputText required="true" class="form-control" id="cargo" value="#{servidorController.servidorModel.cargo}"/>
+                                <h:outputText class="form-control" id="cargo" value="#{servidorController.servidorModel.cargo}"/>
                             </div>
                              <div class="form-group col-md-4">
                                 <label for="eventoIdCampus">Área</label>
-                                <h:selectOneMenu required="true" class="form-control" id="idArea" value="#{servidorController.servidorModel.area.idArea}">  
-                                    <f:selectItem noSelectionOption="true" itemLabel="Selecione uma área" itemValue="" />
-                                    <f:selectItems value="#{servidorController.areas}" />
-                                </h:selectOneMenu>
+                                <h:outputText class="form-control" id="idArea" value="#{servidorController.servidorModel.area.areaNome}"/>
                             </div>
                         </div>                   
                     </div>
-                    <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <div class="card-footer text-muted" style="display: flex; flex-direction: row; justify-content: flex-start;">
                         <h:commandButton class="btn btn-secondary" value="Voltar" action="buscarServidor.xhtml"/>
-                        <h:commandButton class="btn btn-primary" value="Salvar alterações" action="#{servidorController.salvarEdicao()}"/>
                     </div>
                 </h:form>
             </div>            

@@ -6,10 +6,12 @@
 package edu.eventos.ifms.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -28,18 +30,18 @@ public class servidorModel extends pessoaInternaModel implements Serializable {
     @Column(nullable = false, length = 10)
     private String siape;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "idCampus", insertable = true, updatable = true)
-    private campusModel campus;
+    @Column(nullable = false, length = 30)
+    private String cargo;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "idArea", insertable = true, updatable = true)
     private areaModel area;
     
+    @ManyToMany(mappedBy = "servidores")
+    private List<campusModel> campusAoQualPertence;
+    
     public servidorModel() {
-        this.campus = new campusModel();
         this.area = new areaModel();
     }
 
@@ -51,20 +53,28 @@ public class servidorModel extends pessoaInternaModel implements Serializable {
         this.siape = siape;
     }
 
-    public campusModel getCampus() {
-        return campus;
-    }
-
-    public void setCampus(campusModel campus) {
-        this.campus = campus;
-    }
-
     public areaModel getArea() {
         return area;
     }
 
     public void setArea(areaModel area) {
         this.area = area;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public List<campusModel> getCampusAoQualPertence() {
+        return campusAoQualPertence;
+    }
+
+    public void setCampusAoQualPertence(List<campusModel> campusAoQualPertence) {
+        this.campusAoQualPertence = campusAoQualPertence;
     }
     
 }

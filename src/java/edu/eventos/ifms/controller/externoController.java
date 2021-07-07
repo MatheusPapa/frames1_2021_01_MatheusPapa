@@ -61,6 +61,10 @@ public class externoController {
         return "editarExterno.xhtml?faces-redirect=true&idExterno=" + idExterno;
     }
     
+    public String detalhar(long idExterno) {
+        return "detalhesExterno.xhtml?faces-redirect=true&idExterno=" + idExterno;
+    }
+    
     public void remover(long idExterno) {
         this.externoRepository.remover(idExterno);
     }

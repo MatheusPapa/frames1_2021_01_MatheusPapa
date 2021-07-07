@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="corpo">
+        <div class="container">
+            <h1>Associar Atividade e Aluno</h1>
+            <h:form class="novo">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="idCampus">Atividade</label>
+                        <h:selectOneMenu class="form-control" id="idAtividade" value="#{atividadeController.atividadeModel.idAtividade}">
+                            <f:selectItems value="#{atividadeController.atividades}" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="idPessoa">Aluno</label>
+                        <h:selectOneMenu class="form-control" id="idPessoa" value="#{alunoController.alunoModel.idPessoa}">
+                            <f:selectItems value="#{alunoController.alunos}" />
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <h:commandButton class="btn btn-primary" value="Vincular" action="#{atividadeController.vincularAtividadeAluno(alunoController.alunoModel)}"/>
+            </h:form>
+            <hr/>
+            <div class="field">
+                <table data-page-length='5' class="table table-bordered tablestriped" onload="#{atividadeController.buscarTodasAtividadesComAlunos()}">
+                    <thead>
+                        <tr>
+                            <th scope="col">Atividade</th>
+                            <th scope="col">Aluno</th>
+                            <th scope="col">RA</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{atividadeController.listaDeAtividades}" var="atividade">
+                            <tr>
+                                <td colspan="4">#{atividade.atividadeNome}</td>
+                            </tr>
+                            <ui:repeat value="#{atividade.alunos}" var="aluno">
+                                <tr>
+                                    <td>#</td>
+                                    <td>#{aluno.pessoaNome}</td>
+                                    <td>#{aluno.ra}</td>
+                                    <td>
+                                        <h:form>
+                                            <h:commandButton class="btn btn-secondary" value="Desvincular" onclick="return confirm('Deseja realmente desvincular?')" action= "#{atividadeController.desvincularAluno(atividade, aluno)}"/>
+                                        </h:form>
+                                    </td>
+                                </tr>
+                            </ui:repeat>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

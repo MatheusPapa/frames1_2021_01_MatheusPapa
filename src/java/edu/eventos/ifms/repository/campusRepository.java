@@ -3,6 +3,7 @@ package edu.eventos.ifms.repository;
 import edu.eventos.ifms.model.campusModel;
 import edu.eventos.ifms.util.hibernateConector;
 import java.util.List;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -36,6 +37,7 @@ public class campusRepository {
         this.transaction = session.beginTransaction();
         
         campusModel campus = (campusModel) this.session.get(campusModel.class, idCampus);
+        Hibernate.initialize(campus.getServidores());
         
         this.transaction.commit();
         this.session.close();

@@ -17,6 +17,7 @@
                             <th scope="col">RA</th>
                             <th scope="col">Curso</th>
                             <th scope="col">Campus</th>
+                            <th scope="col">Detalhes</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Excluir</th>
                         </tr>
@@ -31,12 +32,17 @@
                                 <td>#{aluno.campus.campusNome}</td>
                                 <td>
                                     <h:form>
-                                        <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar esse aluno?')" action= "#{alunoController.editar(aluno.idAluno)}" />
+                                        <h:commandButton class="btn btn-secondary" value="Detalhes" action= "#{alunoController.detalhar(aluno.idPessoa)}" />
                                     </h:form>
                                 </td>
                                 <td>
                                     <h:form>
-                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="confirm('Tem certeza que deseja excluir esse aluno?')" action= "#{alunoController.remover(aluno.idAluno)}"/>
+                                        <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar esse aluno?')" action= "#{alunoController.editar(aluno.idPessoa)}" />
+                                    </h:form>
+                                </td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-danger" value="Excluir" onclick="confirm('Tem certeza que deseja excluir esse aluno?')" action= "#{alunoController.remover(aluno.idPessoa)}"/>
                                     </h:form>
                                 </td>
                             </tr>

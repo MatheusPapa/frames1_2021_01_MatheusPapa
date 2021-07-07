@@ -54,7 +54,7 @@ public class atividadeModel implements Serializable {
     @JoinTable(name = "atividade_pessoa",
             joinColumns = @JoinColumn(name = "idAtividade"),
             inverseJoinColumns = @JoinColumn(name = "idPessoa"))
-    private List<pessoaModel> pessoas;
+    private List<alunoModel> alunos;
 
     public atividadeModel() {
         this.evento = new eventoModel();
@@ -109,12 +109,12 @@ public class atividadeModel implements Serializable {
         this.pessoa = pessoa;
     }
 
-    public List<pessoaModel> getPessoas() {
-        return pessoas;
+    public List<alunoModel> getAlunos() {
+        return alunos;
     }
 
-    public void setPessoas(List<pessoaModel> pessoas) {
-        this.pessoas = pessoas;
+    public void setAlunos(List<alunoModel> aluno) {
+        this.alunos = aluno;
     }
     
 }

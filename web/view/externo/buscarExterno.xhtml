@@ -18,6 +18,7 @@
                             <th scope="col">Instituição</th>
                             <th scope="col">Cidade</th>
                             <th scope="col">Estado</th>
+                            <th scope="col">Detalhes</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Excluir</th>
                         </tr>
@@ -31,6 +32,11 @@
                                 <td>#{externo.instituicao}</td>
                                 <td>#{externo.cidade.cidadeNome}</td>
                                 <td>#{externo.estado.estadoNome}</td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-secondary" value="Detalhes" action= "#{externoController.detalhar(externo.idPessoa)}" />
+                                    </h:form>
+                                </td>
                                 <td>
                                     <h:form>
                                         <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar essa pessoa?')" action= "#{externoController.editar(externo.idPessoa)}" />

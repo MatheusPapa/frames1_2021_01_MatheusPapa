@@ -15,8 +15,9 @@
                             <th scope="col">#</th>
                             <th scope="col">Nome do servidor</th>
                             <th scope="col">SIAPE</th>
-                            <th scope="col">Campus</th>
+                            <th scope="col">Data de ingresso</th>
                             <th scope="col">Área</th>
+                            <th scope="col">Detalhes</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Excluir</th>
                         </tr>
@@ -27,8 +28,17 @@
                                 <td>#{servidor.idPessoa}</td>
                                 <td>#{servidor.pessoaNome}</td>
                                 <td>#{servidor.siape}</td>
-                                <td>#{servidor.campus.campusNome}</td>
+                                <td>
+                                    <h:outputLabel value="#{servidor.dataIngresso}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputLabel>
+                                </td>
                                 <td>#{servidor.area.areaNome}</td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-secondary" value="Detalhes" action= "#{servidorController.detalhar(servidor.idPessoa)}" />
+                                    </h:form>
+                                </td>
                                 <td>
                                     <h:form>
                                         <h:commandButton class="btn btn-primary" value="Editar" onclick="confirm('Tem certeza que deseja editar esse servidor?')" action= "#{servidorController.editar(servidor.idPessoa)}" />

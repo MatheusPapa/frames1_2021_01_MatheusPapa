@@ -60,6 +60,10 @@ public class servidorController {
         return "editarServidor.xhtml?faces-redirect=true&idServidor=" + idServidor;
     }
     
+    public String detalhar(long idServidor) {
+        return "detalhesServidor.xhtml?faces-redirect=true&idServidor=" + idServidor;
+    }
+    
     public void remover(long idServidor) {
         this.servidorRepository.remover(idServidor);
     }
@@ -87,6 +91,15 @@ public class servidorController {
         listaDeAreas.forEach((area) -> {
             itens.add(new SelectItem(area.getIdArea(), area.getAreaNome()));
         });
+        return itens;
+    }
+    
+    public List<SelectItem> getServidores() {
+        ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
+        List<servidorModel> listaDeServidores = this.servidorRepository.buscarTodos();
+        for (servidorModel servidor : listaDeServidores) {
+            itens.add(new SelectItem(servidor.getIdPessoa(), servidor.getPessoaNome()));
+        }
         return itens;
     }
 

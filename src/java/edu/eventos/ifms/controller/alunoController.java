@@ -59,6 +59,10 @@ public class alunoController {
         return "editarAluno.xhtml?faces-redirect=true&idAluno=" + idAluno;
     }
     
+    public String detalhar(long idAluno) {
+        return "detalhesAluno.xhtml?faces-redirect=true&idAluno=" + idAluno;
+    }
+    
     public void remover(long idEvento) {
         this.alunoRepository.remover(idEvento);
     }
@@ -76,6 +80,15 @@ public class alunoController {
         this.listaDeCampus = this.campusRepository.buscarTodos();
         listaDeCampus.forEach((campus) -> {
             itens.add(new SelectItem(campus.getIdCampus(), campus.getCampusNome()));
+        });
+        return itens;
+    }
+    
+    public List<SelectItem> getAlunos() {
+        ArrayList<SelectItem> itens = new ArrayList<>();
+        this.listaDeAlunos = this.alunoRepository.buscarTodos();
+        listaDeAlunos.forEach((aluno) -> {
+            itens.add(new SelectItem(aluno.getIdPessoa(), aluno.getPessoaNome()));
         });
         return itens;
     }

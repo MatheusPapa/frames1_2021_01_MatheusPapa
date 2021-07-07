@@ -51,6 +51,7 @@ public class servidorRepository {
         return servidor;
     }
     
+    
     public void remover(long idServidor) {
         this.session = hibernateConector.getSessionFactory().openSession();
         this.transaction = session.beginTransaction();

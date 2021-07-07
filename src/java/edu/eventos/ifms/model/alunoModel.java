@@ -7,12 +7,14 @@ package edu.eventos.ifms.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -43,6 +45,9 @@ public class alunoModel extends pessoaInternaModel implements Serializable {
     @JoinColumn(name = "idCurso", insertable = true, updatable = true)
     private cursoModel curso;
     
+    @ManyToMany(mappedBy = "alunos")
+    private List<atividadeModel> atividadeAoQualPertence;
+    
     public alunoModel() {
         this.campus = new campusModel();
         this.curso = new cursoModel();
@@ -70,6 +75,14 @@ public class alunoModel extends pessoaInternaModel implements Serializable {
 
     public void setCurso(cursoModel curso) {
         this.curso = curso;
+    }
+
+    public List<atividadeModel> getAtividadeAoQualPertence() {
+        return atividadeAoQualPertence;
+    }
+
+    public void setAtividadeAoQualPertence(List<atividadeModel> atividadeAoQualPertence) {
+        this.atividadeAoQualPertence = atividadeAoQualPertence;
     }
     
 }

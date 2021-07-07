@@ -8,6 +8,7 @@ package edu.eventos.ifms.repository;
 import edu.eventos.ifms.model.atividadeModel;
 import edu.eventos.ifms.util.hibernateConector;
 import java.util.List;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -45,6 +46,7 @@ public class atividadeRepository {
         this.transaction = session.beginTransaction();
         
         atividadeModel atividade = (atividadeModel) this.session.get(atividadeModel.class, idAtividade);
+        Hibernate.initialize(atividade.getAlunos());
         
         this.transaction.commit();
         this.session.close();

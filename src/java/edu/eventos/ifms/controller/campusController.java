@@ -8,9 +8,11 @@ package edu.eventos.ifms.controller;
 import edu.eventos.ifms.model.campusModel;
 import edu.eventos.ifms.model.cidadeModel;
 import edu.eventos.ifms.model.estadoModel;
+import edu.eventos.ifms.model.servidorModel;
 import edu.eventos.ifms.repository.campusRepository;
 import edu.eventos.ifms.repository.cidadeRepository;
 import edu.eventos.ifms.repository.estadoRepository;
+import edu.eventos.ifms.repository.servidorRepository;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -29,6 +31,7 @@ public class campusController {
     private campusRepository campusRepository;
     private estadoRepository estadoRepository;
     private cidadeRepository cidadeRepository;
+    private servidorRepository servidorRepository;
     private List<SelectItem> listaDeCidades;
     private List<campusModel> listaDeCampus;
 
@@ -37,7 +40,42 @@ public class campusController {
         this.campusRepository = new campusRepository();
         this.estadoRepository = new estadoRepository();
         this.cidadeRepository = new cidadeRepository();
+        this.servidorRepository = new servidorRepository();
         this.listaDeCidades = this.getCidades(1);
+    }
+    
+    public void buscarTodosCampusComServidores() {
+        List<campusModel> listaDeCampusTemp = new ArrayList<>();
+        listaDeCampusTemp.addAll(this.listaDeCampus);
+        this.listaDeCampus.clear();
+        for (campusModel campus : listaDeCampusTemp) {
+            campus = this.campusRepository.buscarPorId(campus.getIdCampus());
+            if (!campus.getServidores().isEmpty()) {
+                this.listaDeCampus.add(campus);
+            }
+        }
+    }
+
+    public void desvincularServidor(campusModel campus, servidorModel servidor){
+        campus.getServidores().remove(servidor);
+        this.campusRepository.salvar(campus);
+    }
+    
+    public void vincularCampusServidor(servidorModel servidor) {
+        this.campusModel = this.campusRepository.buscarPorId(campusModel.getIdCampus());
+        List<servidorModel> listaDeServidores = new ArrayList<>();
+
+        if (!campusModel.getServidores().isEmpty()) {
+            servidor = (servidorModel) servidorRepository.buscarPorId(servidor.getIdPessoa());
+            listaDeServidores = campusModel.getServidores();
+            listaDeServidores.add(servidor);
+            campusModel.setServidores(listaDeServidores);
+        } else {
+            servidor = servidorRepository.buscarPorId(servidor.getIdPessoa());
+            listaDeServidores.add(servidor);
+            campusModel.setServidores(listaDeServidores);
+        }
+        this.campusRepository.salvar(campusModel);
     }
 
     public String salvar() {
@@ -81,6 +119,15 @@ public class campusController {
 
     public void setCampusRepository(campusRepository campusRepository) {
         this.campusRepository = campusRepository;
+    }
+    
+    public List<SelectItem> getCampi() {
+        ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
+        this.listaDeCampus = this.campusRepository.buscarTodos();
+        listaDeCampus.forEach((campus) -> {
+            itens.add(new SelectItem(campus.getIdCampus(), campus.getCampusNome()));
+        });
+        return itens;
     }
 
     public List<SelectItem> getEstados() {

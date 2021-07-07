@@ -53,8 +53,10 @@ Contributor(s):
     <mapping class="edu.eventos.ifms.model.estadoModel"/>
     <mapping class="edu.eventos.ifms.model.cidadeModel"/>
     <mapping class="edu.eventos.ifms.model.cursoModel"/>
-    <mapping class="edu.eventos.ifms.model.alunoModel"/>
+    <mapping class="edu.eventos.ifms.model.pessoaModel"/>
+    <mapping class="edu.eventos.ifms.model.pessoaInternaModel"/>
     <mapping class="edu.eventos.ifms.model.servidorModel"/>
+    <mapping class="edu.eventos.ifms.model.alunoModel"/>
     <mapping class="edu.eventos.ifms.model.externoModel"/>
     <mapping class="edu.eventos.ifms.model.atividadeModel"/>
   </session-factory>

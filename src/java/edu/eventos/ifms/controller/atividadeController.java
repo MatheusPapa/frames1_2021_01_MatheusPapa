@@ -32,6 +32,8 @@ public class atividadeController  {
     private atividadeRepository atividadeRepository;
     private eventoModel eventoModel;
     private eventoRepository eventoRepository;
+    private alunoModel alunoModel;
+    private alunoRepository alunoRepository;
     private servidorModel servidorModel;
     private servidorRepository servidorRepository;
     private List<atividadeModel> listaDeAtividades;
@@ -43,6 +45,8 @@ public class atividadeController  {
         this.atividadeRepository = new atividadeRepository();
         this.eventoModel = new eventoModel();
         this.eventoRepository = new eventoRepository();
+        this.alunoModel = new alunoModel();
+        this.alunoRepository = new alunoRepository();
         this.servidorModel = new servidorModel();
         this.servidorRepository = new servidorRepository();
         this.listaDePessoas = new ArrayList<>();
@@ -73,6 +77,49 @@ public class atividadeController  {
     
     public void getAtividade() {
         this.atividadeModel = this.atividadeRepository.buscarPorId(this.atividadeModel.getIdAtividade());
+    }
+    
+    public void buscarTodasAtividadesComAlunos() {
+        List<atividadeModel> listaDeAtividadesTemp = new ArrayList<>();
+        listaDeAtividadesTemp.addAll(this.listaDeAtividades);
+        this.listaDeAtividades.clear();
+        for (atividadeModel atividade : listaDeAtividadesTemp) {
+            atividade = this.atividadeRepository.buscarPorId(atividade.getIdAtividade());
+            if (!atividade.getAlunos().isEmpty()) {
+                this.listaDeAtividades.add(atividade);
+            }
+        }
+    }
+
+    public void desvincularAluno(atividadeModel atividade, alunoModel aluno){
+        atividade.getAlunos().remove(aluno);
+        this.atividadeRepository.salvar(atividade);
+    }
+    
+    public void vincularAtividadeAluno(alunoModel aluno) {
+        this.atividadeModel = this.atividadeRepository.buscarPorId(atividadeModel.getIdAtividade());
+        List<alunoModel> listaDeAlunos = new ArrayList<>();
+
+        if (!atividadeModel.getAlunos().isEmpty()) {
+            aluno = (alunoModel) alunoRepository.buscarPorId(aluno.getIdPessoa());
+            listaDeAlunos = atividadeModel.getAlunos();
+            listaDeAlunos.add(aluno);
+            atividadeModel.setAlunos(listaDeAlunos);
+        } else {
+            aluno = alunoRepository.buscarPorId(aluno.getIdPessoa());
+            listaDeAlunos.add(aluno);
+            atividadeModel.setAlunos(listaDeAlunos);
+        }
+        this.atividadeRepository.salvar(atividadeModel);
+    }
+    
+    public List<SelectItem> getAtividades() {
+        ArrayList<SelectItem> itens = new ArrayList<SelectItem>();
+        this.listaDeAtividades = this.atividadeRepository.buscarTodos();
+        listaDeAtividades.forEach((atividade) -> {
+            itens.add(new SelectItem(atividade.getIdAtividade(), atividade.getAtividadeNome()));
+        });
+        return itens;
     }
     
     public List<SelectItem> getEventos() {
